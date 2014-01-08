@@ -1,0 +1,34 @@
+!!!  
+%html  
+  %head  
+    %title Rehab::Product Junkie
+
+    -#-convert parans to hash
+
+    %link(rel="stylesheet" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css")  
+    %link(rel="stylesheet" href="css/styles.css")  
+  %body  
+    #wrapper  
+      #header  
+        %h1 Rehab::Product Junkie
+        %h2 A place of refuge.
+      #nav  
+        %ol  
+          %a(href="/")  
+            %li Home  
+          %a(href="reviews")
+            %li Reviews
+          %a(href="yourHair")
+            %li Your Hair
+  
+      #content  
+        =yield  
+  
+      #side_bar  
+        %h1 Side Bar  
+        %p  
+          This is the side bar of the webpage  
+  
+      #footer  
+        %p  
+          This is the footer.

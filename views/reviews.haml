@@ -1,0 +1,263 @@
+%h1 Reviews
+
+%form(action='/searchReviews' method='POST' id='searchReviews')
+  Search for Products!
+
+  %p
+    Choose the Product Type:
+    <br>
+
+    /pull product types from database (for each)
+
+    %select{ :id => 'ProductType', :name => 'ProductType'}
+      %option Cleanser
+      %option Conditioner
+      %option DeepConditioner
+      %option LeaveInConditioner
+      %option Styler
+      %option Finisher
+
+  %p
+    On a scale from 1-5, How important is it to you that this Product contribute to hair growth?
+
+
+    /write code to use a range to display the number of option tags that i need. also create an array of questions. use partial views (haml files) and use haml to call them
+
+
+    %select{ :id => 'Growth', :name => 'Growth' }
+      %option 1
+      %option 2
+      %option 3
+      %option 4
+      %option 5
+
+  %p
+    On a scale from 1-5, How important is it to you that this Product give good curl definition?
+
+    %select{ :id => 'Definition', :name => 'Definition' }
+      %option 1
+      %option 2
+      %option 3
+      %option 4
+      %option 5
+
+  %p
+    On a scale from 1-5, How important is it to you that this Product add moisture?
+
+    %select{ :id => 'Dryness', :name => 'Dryness' }
+      %option 1
+      %option 2
+      %option 3
+      %option 4
+      %option 5
+
+  %p
+    On a scale from 1-5, How important is it to you that this Product prevent/treat damage?
+
+    %select{ :id => 'Damage', :name => 'Damage' }
+      %option 1
+      %option 2
+      %option 3
+      %option 4
+      %option 5
+
+  %p
+    On a scale from 1-5, How important is it to you that this Product eliminate frizz?
+
+    %select{ :id => 'Frizz', :name => 'Frizz' }
+      %option 1
+      %option 2
+      %option 3
+      %option 4
+      %option 5
+
+  %p
+    %input{:type => "submit", :id => "searchReviews", :commit => "searchReviews"}
+
+  <br>
+  <br>
+
+  Here are the products matching your criteria:
+  %p=@Products
+
+  <br>
+  <br>
+
+
+%h2 Enter a Review for the Product:
+
+
+%form(action='/submitReview' method='POST' id='submitReview')
+
+  %p
+    Choose the Product Id:
+
+    %input{:type=>'text', :name=>'ProductId', :title=>'ProductId', :class=>'required', :minlength=>'3'}
+
+    <br>
+
+    Date:
+    %input{:type=>'text', :name=>'Date', :title=>'Date', :class=>'required', :minlength=>'3'}
+
+    <br>
+
+    Reviewer:
+    %input{:type=>'text', :name=>'Reviewer', :title=>'Reviewer', :class=>'required', :minlength=>'3'}
+
+    <br>
+
+    %p
+      On a scale from 1-5, How well does this Product contribute to hair growth?
+
+      %select{ :id => 'Growth', :name => 'Growth' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this product define curls?
+
+      %select{ :id => 'Definition', :name => 'Definition' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this product add moisture?
+
+      %select{ :id => 'Dryness', :name => 'Dryness' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this product prevent/treat damage?
+
+      %select{ :id => 'Damage', :name => 'Damage' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this Product eliminate frizz?
+
+      %select{ :id => 'Frizz', :name => 'Frizz' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      %input{:type=>'text', :name=>'Review', :title=>'Review', :class=>'required', :minlength=>'3'}
+  %br
+  %br
+
+  %input{:type=> "button", :value=>"upload Photo", :name=>"uploadPhoto"}
+
+  %p
+    %input{:type=> "submit", :id=>"submitNewProductReview", :commit=> "submitNewProductReview"}
+
+
+  <br>
+  <br>
+
+
+%h2 Enter a new Product and your review:
+
+%form(action='/submitNewProductReview' method='POST' id='submitReview')
+
+  %p
+    Choose the Product Type:
+    <br>
+
+
+  %select{ :id => 'Type', :name => 'Type'}
+    %option Cleanser
+    %option Conditioner
+    %option DeepConditioner
+    %option LeaveInConditioner
+    %option Styler
+    %option Finisher
+
+  %label Product Name:
+  %p
+    %input{:type=>'text', :name=>'ProductName', :title=>'Please enter the name of the product', :class=>'required', :minlength=>'3'}
+
+    Date:
+    %input{:type=>'text', :name=>'Date', :title=>'Date', :class=>'required', :minlength=>'3'}
+
+    <br>
+
+    Reviewer:
+    %input{:type=>'text', :name=>'Reviewer', :title=>'Reviewer', :class=>'required', :minlength=>'3'}
+
+    <br>
+
+    %p
+      On a scale from 1-5, How well does this Product contribute to hair growth?
+
+      %select{ :id => 'Growth', :name => 'Growth' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this product define curls?
+
+      %select{ :id => 'Definition', :name => 'Definition' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this product add moisture?
+
+      %select{ :id => 'Dryness', :name => 'Dryness' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this product prevent/treat damage?
+
+      %select{ :id => 'Damage', :name => 'Damage' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      On a scale from 1-5, How well does this Product eliminate frizz?
+
+      %select{ :id => 'Frizz', :name => 'Frizz' }
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+
+    %p
+      %input{:type=>'text', :name=>'Review', :title=>'Review', :class=>'required', :minlength=>'3'}
+  %br
+  %br
+
+  %input{:type=> "button", :value=>"upload Photo", :name=>"uploadPhoto"}
+
+  %p
+    %input{:type=> "submit", :id=>"submitNewProductReview", :commit=> "submitNewProductReview"}
