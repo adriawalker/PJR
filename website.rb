@@ -1,13 +1,24 @@
 require 'sinatra'
 require 'haml'
-require_relative 'product'
-require_relative 'review'
+require_relative './product'
+require_relative './review'
 require 'active_record'
+require 'pry'
+
+
+
+ActiveRecord::Base.establish_connection(
+    :adapter => "mysql",
+    :host => "127.0.0.1",
+    :database => "PJR"
+)
 
 
 
 get '/' do
+ #binding.pry
   haml :index
+
 end
 
 
@@ -21,15 +32,13 @@ end
 
 
 post '/searchReviews' do
-    p = Product.new
-    @products = p.where(:growth =>params[:Growth])
-    puts "Products: " + @products.inspect
-   # @Products = ""
-   # Products.find_each do |products|
-   #   if products.ptype == params[:ProductType]
-   #     @Products = @Products + "</br>" + products.name
-   #   end
-   # end
+    @Products = ""
+    @Count = Reviews.where(frizz: params[:Frizz], growth: params[:Growth], damage: params[:Damage], definition: params[:Definition], dryness: params[:Dryness]).count
+
+    for i in 0..@Count-1 do
+      @Products = @Products + Reviews.where(frizz: params[:Frizz], growth: params[:Growth], damage: params[:Damage], definition: params[:Definition], dryness: params[:Dryness])[i].product.name + "<br/>"
+    end
+
     haml :reviews
 end
 
